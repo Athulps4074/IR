@@ -1,2 +1,24 @@
-# IR
-IR Sensor Object Detection using ESP32 and Interrupts  This project detects objects using an IR sensor connected to an ESP32 board. It uses hardware interrupts to print "Object detected" whenever an object is detected by the IR sensor.  ⚙ Connections:  IR Sensor OUT → GPIO 14 of ESP32  IR Sensor VCC → 3.3V of ESP32  IR Sensor GND → GND of ESP
+int irSensorPin = 4;    
+void IRinterrupt () {
+  int State = digitalRead(irSensorPin);
+  if (State==LOW)
+   Serial.println("Object detected");
+   
+
+}
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(irSensorPin, INPUT);
+  attachInterrupt(digitalPinToInterrupt(irSensorPin),IRinterrupt,FALLING);
+  
+  Serial.println("Execution Started...");
+  delay(10000);
+  Serial.println("Execution Ended");
+}
+
+void loop() {
+
+
+  
+}
